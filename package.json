@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "node --max_old_space_size=4096 app.js",
+    "debug": "node --inspect-brk=9231 --max_old_space_size=4096 app.js"
+  },
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
