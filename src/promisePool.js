@@ -1,7 +1,8 @@
 module.exports = class PromisePool{
-    constructor(tasks, size){
+    constructor(tasks, size, cb){
         this.size = size
         this.tasks = tasks
+        this.cb = cb
         this.init()
     }
 
@@ -29,7 +30,7 @@ module.exports = class PromisePool{
         }
     }
 
-    onEnd(cb){
+    onEnd(){
         cb&&cb()
     }
 

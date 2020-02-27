@@ -117,11 +117,10 @@ function begin(){
     },[]).filter(p => typeof p == 'function')
     total = tasks.length;
     console.log(tasks)
-    let pool = new PromisePool(tasks, poolSize)
-    pool.start();
-    pool.onEnd(()=>{
+    let pool = new PromisePool(tasks, poolSize,()=>{
         console.log('脚本执行成功！')
     })
+    pool.start();
 }
 
 begin()
