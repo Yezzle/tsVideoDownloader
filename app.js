@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const PromisePool = require('./src/promisePool')
+const TaskPool = require('./src/taskPool')
 const maps = require('./src/maps')
 const path = require('path')
 const request = require('request');
@@ -117,7 +117,7 @@ function begin(){
     },[]).filter(p => typeof p == 'function')
     total = tasks.length;
     console.log(tasks)
-    let pool = new PromisePool(tasks, poolSize,()=>{
+    let pool = new TaskPool(tasks, poolSize,()=>{
         console.log('脚本执行成功！')
     })
     pool.start();

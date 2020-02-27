@@ -1,4 +1,4 @@
-module.exports = class PromisePool{
+module.exports = class TaskPool{
     constructor(tasks, size, cb){
         this.size = size
         this.tasks = tasks
