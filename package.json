@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "node --max_old_space_size=4096 app.js",
+    "review": "node --max_old_space_size=4096 app.js review",
     "debug": "node --inspect-brk=9231 --max_old_space_size=4096 app.js"
   },
   "dependencies": {

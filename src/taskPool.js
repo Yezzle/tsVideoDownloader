@@ -1,4 +1,5 @@
 module.exports = class TaskPool{
+    task = [];
     constructor(tasks, size, cb){
         this.size = size
         this.tasks = tasks
@@ -13,10 +14,14 @@ module.exports = class TaskPool{
 
     start(){
         this.state = 'running'
-        for(let i=0; i< this.size; i++){
+        for(let i=0; i< Math.min(this.size, this.tasks.length); i++){
             this.pointer = i
             let t = this.tasks[this.pointer]
-            t&&this.runTask(t)
+            if(t){
+                this.runTask(t)
+            } else {
+                break
+            }
         }
     }
 
@@ -25,13 +30,16 @@ module.exports = class TaskPool{
         if(this.tasks[this.pointer]){
             this.runTask(this.tasks[this.pointer])
         }else{
-            this.onEnd()
-            this.state = 'ended'
+            this.size--  // 出栈
+            if(this.size == 0){ 
+                this.onEnd()
+                this.state = 'ended'
+            }
         }
     }
 
     onEnd(){
-        cb&&cb()
+        this.cb&&this.cb()
     }
 
     runTask(task){
